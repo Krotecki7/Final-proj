@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container pt-3 pb-2 mb-3">
+    <div>
+        <h1 class="text-center">Возвращайтесь к своим записям в любое время!</h1>
+    </div>
+    <div align="center">
+        <a class="p-2 btn btn-outline-dark" href="{% url 'users:login' %}">Войти снова</a>
+    </div>
+</div>
+{% endblock %}
