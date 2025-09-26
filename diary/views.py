@@ -1,11 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse, reverse_lazy
-from django.views import View
+from django.db.models import Q
+from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.core.cache import cache
-from django.db.models import Q
 
 from .forms import NoteForm
 from .models import Note
@@ -59,7 +57,7 @@ class SearchResultView(ListView):
     template_name = "search_result.html"
 
     def get_queryset(self):
-        query = self.request.GET.get('q')
+        query = self.request.GET.get("q")
         object_list = Note.objects.filter(
             Q(name__icontains=query) | Q(text__icontains=query)
         )
